@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      UTF-8 Unicode 9.0 Full Plane/Chart/Table/Map/List
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+      integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi"
+      crossorigin="anonymous">
+    <style>
+      /* Default fonts */
+      body {
+        font-family: FreeMono,
+                     FreeSans,
+                     FreeSerif,
+                     -apple-system,
+                     BlinkMacSystemFont,
+                     "Segoe UI",
+                     Roboto,
+                     Oxygen,
+                     Ubuntu,
+                     Cantarell,
+                     "Fira Sans",
+                     "Droid Sans",
+                     "Helvetica Neue",
+                     sans-serif !important;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Prepare table
+      var total = 65535;
+      var width = 16;
+      var height = total / width;
+
+      // Make table
+      var table = document.createElement("TABLE");
+      table.className += " table table-striped text-xs-center";
+
+      // Make rows
+      for(var i = 0; i < height; i++) {
+        var row = table.insertRow();
+
+        // Make cells
+        for(var c = 0; c < width; c++) {
+          var cell = row.insertCell();
+          cell.innerHTML = String.fromCodePoint(i * width + c);
+        }
+
+        // Add legend cell
+        var cellLegend = row.insertCell(0);
+        cellLegend.className += " table-inverse bg-primary";
+        cellLegend.innerHTML = i.toString(16).toUpperCase();
+      }
+
+      // Add headers
+      var header = table.createTHead();
+      var headerRow = header.insertRow();
+
+      // Color header row
+      headerRow.className += " table-inverse bg-primary";
+
+      // Add cells to header row
+      for(var c = 0; c < width; c++) {
+        var cell = headerRow.insertCell();
+
+        // Convert number to HEX and print
+        cell.innerHTML = c.toString(16).toUpperCase();
+      }
+      headerRow.insertCell(0);
+
+      // Print table
+      document.body.appendChild(table);
+    </script>
+  </body>
+</html>
